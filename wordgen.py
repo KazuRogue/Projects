@@ -46,7 +46,7 @@ consonants = ("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v
 
 
 # for rules in allowed letter combinations in onset
-onsetCC = ("s", "c")
+onsetCC = ("s", "C")
 onsetCCC1 = ("p", "t", "k")
 onsetCCC2 = ("l", "r", "u", "w")
 
@@ -75,13 +75,16 @@ for p in range(wordlen): #loop will run once per syllable
             
     print("result = " + str(result))
             
+    print("onsetlen = " + str(onsetlen))
             
     # the nucleus length will be 0, 1, or 2 (random)
     nucleuslen = np.random.randint(low = 1, high = 3)
+    print("nucleuslen = " + str(nucleuslen))
     
     # the coda length will be 0, 1, 2, or 3 (random)
     codalen = np.random.randint(low = 0, high = 4)
-
+    print("codalen = " + str(codalen))
+    print()
 # onset
     if onsetlen == 1:
             word += random.choice(consonants)
@@ -89,9 +92,9 @@ for p in range(wordlen): #loop will run once per syllable
     if onsetlen == 2:
         onset = random.choice(onsetCC)
         if onset == "s":
-            word += "sc"
-        if onset == "c":
-            word += "c" + random.choice(onsetCCC2)
+            word += "s" + random.choice(consonants)
+        if onset == "C":
+            word += random.choice(consonants) + random.choice(onsetCCC2)
     
     if onsetlen == 3:
         word += "s" + random.choice(onsetCCC1) + random.choice(onsetCCC2)
@@ -110,11 +113,11 @@ for p in range(wordlen): #loop will run once per syllable
     if codalen == 2:
         codachance = np.random.randint(low = 0, high = 1)
         if codachance == 0:
-            word += random.choice(codaCC1) + "c"
-        else: word += "c" + random.choice(codaCC2)
+            word += random.choice(codaCC1) + random.choice(consonants)
+        else: word += random.choice(consonants) + random.choice(codaCC2)
     
     if codalen == 3:
-        word += random.choice(codaCC1) + "c" + random.choice(codaCC2)
+        word += random.choice(codaCC1) + random.choice(consonants) + random.choice(codaCC2)
     
 # syllable end
     if p != wordlen - 1: # don't put a hyphen on the last syllable
