@@ -91,7 +91,7 @@ def shuffle():
             count = 0
             side_switch_count += 1 # Increases when the next group is about to fall from the opposite side
         
-        if halt_right == True or halt_left == True:
+        if halt_right == True or halt_left == True: # If one side runs out of cards, stop pulling from that side
             halt_side_switch = True
 
         ''' Diagnostic
@@ -102,7 +102,7 @@ def shuffle():
         print("finish")
         '''
 
-    number_of_shuffles += 1
+    number_of_shuffles += 1 # The same deck can be shuffled several times
     print("Number of shuffles:", number_of_shuffles)
     print(deck)
     print()
@@ -120,7 +120,7 @@ while loop: # Input command to run function
         func = input('Input command: ')
         function_dict[func]()
         print()
-    except KeyError:
+    except KeyError: # If input is not reconized, ignore and continue the loop
         continue
     except KeyboardInterrupt: # This isn't working for some reason...
         print("All done")
